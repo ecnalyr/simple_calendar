@@ -1,4 +1,33 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
-<% end %>
+<h1>Listing work_shifts</h1>
+
+<div id="articles">
+  <h2 id="month">
+    <%= link_to "<", date: @date.prev_month %>
+    <%= @date.strftime("%B %Y") %>
+    <%= link_to ">", date: @date.next_month %>
+  </h2>
+  <%= calendar @date do |date| %>
+    <%= date.day %>
+    <% if @work_shifts_by_date[date] %>
+      <ul>
+        <% @work_shifts_by_date[date].each do |work_shift| %>
+          <li><%= link_to work_shift.user.name, work_shift %><br />
+          <%= work_shift.start_of_shift.strftime("%H:%M") %> - <%= work_shift.end_of_shift.strftime("%H:%M") %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <% if @time_offs_by_date[date] %>
+      <hr>
+      <ul>
+        <% @time_offs_by_date[date].each do |time_off| %>
+          <li><%= link_to time_off.user.name, time_off %> (time off)<br />
+          <%= time_off.reason %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to 'New Work shift', new_work_shift_path %>

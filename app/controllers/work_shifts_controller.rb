@@ -5,27 +5,20 @@ class WorkShiftsController < ApplicationController
   # GET /work_shifts.json
   def index
     @work_shifts = WorkShift.all
-    # @work_shifts_by_date = @work_shifts.select("*").order("DATE(start_of_shift)").group("DATE(start_of_shift)").work_shift
     @work_shifts_by_date = @work_shifts.group_by{ |work_shift| work_shift.start_of_shift.to_date}
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end
 
-  # GET /work_shifts/1
-  # GET /work_shifts/1.json
   def show
   end
 
-  # GET /work_shifts/new
   def new
     @work_shift = WorkShift.new
   end
 
-  # GET /work_shifts/1/edit
   def edit
   end
 
-  # POST /work_shifts
-  # POST /work_shifts.json
   def create
     @work_shift = WorkShift.new(work_shift_params)
 
@@ -40,8 +33,6 @@ class WorkShiftsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /work_shifts/1
-  # PATCH/PUT /work_shifts/1.json
   def update
     respond_to do |format|
       if @work_shift.update(work_shift_params)
@@ -54,8 +45,6 @@ class WorkShiftsController < ApplicationController
     end
   end
 
-  # DELETE /work_shifts/1
-  # DELETE /work_shifts/1.json
   def destroy
     @work_shift.destroy
     respond_to do |format|

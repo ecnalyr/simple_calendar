@@ -31,3 +31,11 @@ end
 	workshift.user = [user1, user2, user3, user4].sample
 	workshift.save
 end
+
+(1..100).each do |i|
+	timeoff = TimeOff.find_or_create_by start_date: time_rand.to_date
+	timeoff.end_date = timeoff.start_date + (1..5).to_a.sample.days
+	timeoff.user = [user1, user2, user3, user4].sample
+	timeoff.reason = "somereason"
+	timeoff.save
+end
