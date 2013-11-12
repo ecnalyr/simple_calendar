@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start of shift:</strong>
+  <%= @work_shift.start_of_shift %>
+</p>
+
+<p>
+  <strong>End of shift:</strong>
+  <%= @work_shift.end_of_shift %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @work_shift.user %>
+</p>
+
+<%= link_to 'Edit', edit_work_shift_path(@work_shift) %> |
+<%= link_to 'Back', work_shifts_path %>
