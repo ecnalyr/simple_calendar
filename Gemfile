@@ -13,6 +13,10 @@ gem 'figaro'
 gem 'pg'
 gem 'simple_form'
 gem 'zurb-foundation'
+gem 'groupdate'
+gem 'jquery-turbolinks'
+
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
@@ -25,6 +29,7 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
+  gem "annotate", "~> 2.5.0"
 end
 group :development, :test do
   gem 'factory_girl_rails'

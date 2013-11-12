@@ -5,6 +5,9 @@ class WorkShiftsController < ApplicationController
   # GET /work_shifts.json
   def index
     @work_shifts = WorkShift.all
+    # @work_shifts_by_date = @work_shifts.select("*").order("DATE(start_of_shift)").group("DATE(start_of_shift)").work_shift
+    @work_shifts_by_date = @work_shifts.group_by{ |work_shift| work_shift.start_of_shift.to_date}
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end
 
   # GET /work_shifts/1
